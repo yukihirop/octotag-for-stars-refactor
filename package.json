@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:yukihirop/octotag-for-stars-refactor.git",
   "author": "yukihirop <te108186@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.27.1"
+  }
 }
