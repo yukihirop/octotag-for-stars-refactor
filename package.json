@@ -1,0 +1,8 @@
+{
+  "name": "octotag-for-stars-refactor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:yukihirop/octotag-for-stars-refactor.git",
+  "author": "yukihirop <te108186@gmail.com>",
+  "license": "MIT"
+}
