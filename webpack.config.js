@@ -20,7 +20,14 @@ module.exports = {
   performance: {
     hints: 'error'
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    })
+  ]
 }
 
 // http://vue-loader.vuejs.org/en/workflow/production.html
