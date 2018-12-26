@@ -26,7 +26,9 @@ module.exports = {
     ]
   },
   performance: {
-    hints: 'error'
+    hints: 'error',
+    maxEntrypointSize: 2000000,
+    maxAssetSize: 2000000
   },
   devtool: '#eval-source-map',
   plugins: [
