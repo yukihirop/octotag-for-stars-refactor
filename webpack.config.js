@@ -14,6 +14,14 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      },
+      // https://blog.mrym.tv/archives/296
+      { test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/, use: 'url-loader?limit=10000&mimetype=application/font-woff' },
+      { test: /\.(ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, use: "file-loader" },
+      // https://github.com/webpack-contrib/sass-loader/issues/344#issuecomment-367148933
+      {
+        test: /\.css|scss$/,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }]
       }
     ]
   },
