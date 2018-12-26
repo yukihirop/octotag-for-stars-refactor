@@ -6,7 +6,8 @@
   "author": "yukihirop <te108186@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint": "eslint --ext .js src"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
