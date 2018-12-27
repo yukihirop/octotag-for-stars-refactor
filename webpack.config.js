@@ -3,11 +3,14 @@ var webpack = require('webpack')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    main: './src/main.js',
+    background: './src/background.js'
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: '[name].build.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -31,7 +34,8 @@ module.exports = {
     maxEntrypointSize: 2000000,
     maxAssetSize: 2000000
   },
-  devtool: '#eval-source-map',
+  // http://eiua-memo.tumblr.com/post/172719308488/chromeextension-unsafe-eval-%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95
+  devtool: 'cheap-module-source-map',
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -42,6 +46,16 @@ module.exports = {
       [{
         from: path.join(__dirname, 'src', 'manifest.json'),
         to: path.join(__dirname, 'dist')
+      },
+      {
+        from: path.join(__dirname, 'src', 'images', '**/*'),
+        to: path.join(__dirname, 'dist'),
+        context: 'src'
+      },
+      {
+        from: path.join(__dirname, 'src', 'css', '**/*'),
+        to: path.join(__dirname, 'dist'),
+        context: 'src'
       }]
     )
   ]
