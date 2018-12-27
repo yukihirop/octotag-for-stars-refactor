@@ -1,12 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: '[name].build.js'
   },
   module: {
     rules: [
@@ -36,7 +37,13 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
-    })
+    }),
+    new CopyWebpackPlugin(
+      [{
+        from: path.join(__dirname, 'src', 'manifest.json'),
+        to: path.join(__dirname, 'dist')
+      }]
+    )
   ]
 }
 
