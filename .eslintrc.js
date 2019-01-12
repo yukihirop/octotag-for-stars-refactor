@@ -10,6 +10,10 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
+    "globals": {
+        "jQuery": true,
+        "chrome": true
+    },
     "rules": {
         "indent": [
             "error",
@@ -18,10 +22,6 @@ module.exports = {
         "linebreak-style": [
             "error",
             "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
         ],
         "semi": [
             "error",
