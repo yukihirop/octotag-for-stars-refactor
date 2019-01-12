@@ -33,5 +33,18 @@
       "js": [
         "main.bundle.js"
       ]
-    }]
+    }
+  ],
+  "web_accessible_resources": [
+    "*.css",
+    "*.eot",
+    "*.svg",
+    "*.woff",
+    "*.woff2",
+    "*.ttf",
+    "*.js.map"
+  ],
+  "permissions": [
+    "storage"
+  ]
 }
