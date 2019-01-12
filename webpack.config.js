@@ -35,7 +35,8 @@ module.exports = {
     maxAssetSize: 2000000
   },
   // http://eiua-memo.tumblr.com/post/172719308488/chromeextension-unsafe-eval-%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95
-  devtool: 'cheap-module-source-map',
+  // devtool: 'cheap-module-source-map',
+  devtool: false,
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -56,8 +57,17 @@ module.exports = {
         from: path.join(__dirname, 'src', 'css', '**/*'),
         to: path.join(__dirname, 'dist'),
         context: 'src'
+      },
+      {
+        from: path.join(__dirname, 'src', 'webfonts', '**/*'),
+        to: path.join(__dirname, 'dist'),
+        context: 'src'
       }]
-    )
+    ),
+    new webpack.SourceMapDevToolPlugin({
+      filename: 'sourcemaps/[file].map',
+      fileContext: 'src'
+    })
   ]
 }
 
