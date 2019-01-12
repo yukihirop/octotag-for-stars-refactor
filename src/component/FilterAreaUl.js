@@ -25,6 +25,7 @@ export default class FilterAreaUl {
         })
     }
 
+    //private
     createTagArray(){
         let data = this.data
         let tagArray = Array.from(util.setTagSet(data))
@@ -35,6 +36,7 @@ export default class FilterAreaUl {
         return tagArray.sort()
     }
 
+    //private
     createCheckedTagArray(){
         let tagArray = []
         this.$octotagFilterLi.each((index, element) => {

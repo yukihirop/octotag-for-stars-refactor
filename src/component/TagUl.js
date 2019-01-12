@@ -23,6 +23,14 @@ export default class TagUl {
         this.appendTag(tagArray)
     }
 
+    tagData(){
+        let tagData = {}
+        let tagArray = this.tag().createTagArray()
+        tagData[this.reponame] = tagArray
+        return tagData
+    }
+
+    //private
     appendTag(tagArray){
         let $tagList = this.$tagList
 
@@ -32,18 +40,14 @@ export default class TagUl {
         })
     }
 
-    tagData(){
-        let tagData = {}
-        let tagArray = this.tag().createTagArray()
-        tagData[this.reponame] = tagArray
-        return tagData
-    }
-
+    //private
     tag(){
         return new Tag(this.$targetInput)
     }
 }
 
+
+//private
 class Tag {
     constructor($input){
         this.$input = $input

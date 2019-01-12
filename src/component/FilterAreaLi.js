@@ -23,24 +23,6 @@ export default class FilterAreaLi {
         })
     }
 
-    switchStatus($element){
-        let isChecked = $element.prop("checked")
-
-        if(isChecked){
-            this.checked($element.parents("li"))
-        } else {
-            this.unchecked($element.parents("li"))
-        }
-    }
-
-    checked($element){
-        $element.addClass(constants.functional.checkedtag_class)
-    }
-
-    unchecked($element){
-        $element.removeClass(constants.functional.checkedtag_class)
-    }
-
     create(){
         let tagname = this.tagname
         let $li = jQuery("<li>")
@@ -55,5 +37,26 @@ export default class FilterAreaLi {
         }))
         this.createSelector = $li
         return this
+    }
+
+    //private
+    switchStatus($element){
+        let isChecked = $element.prop("checked")
+
+        if(isChecked){
+            this.checked($element.parents("li"))
+        } else {
+            this.unchecked($element.parents("li"))
+        }
+    }
+
+    //private
+    checked($element){
+        $element.addClass(constants.functional.checkedtag_class)
+    }
+
+    //private
+    unchecked($element){
+        $element.removeClass(constants.functional.checkedtag_class)
     }
 }

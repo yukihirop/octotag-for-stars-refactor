@@ -22,14 +22,6 @@ export default class RepoUl {
         this.isShowAll = (this.tagArray.length == 0)
     }
 
-    saveAfterEdit(){
-        this.$repoList.each(() => {
-            let $li = jQuery(this)
-            var repoLi = new RepoLi(this.tagArray, $li)
-            repoLi.saveAfterEdit()
-        })
-    }
-
     filterByTags(){
         this.$repoList.each((index, element) => {
             let $li = jQuery(element)
@@ -43,10 +35,6 @@ export default class RepoUl {
         })
     }
 
-    showAll($li){
-        util.removeHiddenClass($li)
-    }
-
     appendRepoTags(){
         let reponameArray = this.getRepoNameList()
         let tagData = this.tagData
@@ -55,10 +43,28 @@ export default class RepoUl {
         })
     }
 
+    getRepoNameList(){
+        let reponameArray = []
+        let $repoAnchors = this.$repoAnchors
+
+        $repoAnchors.each((index, element) => {
+            let $this = jQuery(element)
+            reponameArray.push($this.attr("href"))
+        })
+        return reponameArray
+    }
+
+    //private
+    showAll($li){
+        util.removeHiddenClass($li)
+    }
+
+    //private
     appendOctoTag(reponame, tagData) {
         jQuery('a[href="' + reponame + '"]', this.$repoUl).parents("li").append(this.createOctoTag(reponame, tagData))
     }
 
+    //private
     createOctoTag(reponame, tagData) {
         let editButton = new EditButton(reponame).create()
         let editHint = new EditHint().create()
@@ -86,24 +92,9 @@ export default class RepoUl {
             .append(util.addHiddenClass(editInput.createSelector))
             .append($octotagList)
     }
-
-    getRepoNameList(){
-        let reponameArray = []
-        let $repoAnchors = this.$repoAnchors
-
-        $repoAnchors.each((index, element) => {
-            let $this = jQuery(element)
-            reponameArray.push($this.attr("href"))
-        })
-        return reponameArray
-    }
-
-    createTagArray(){
-        let tagSet = util.setTagSet(this.tagData)
-        return Array.from(tagSet).sort()
-    }
 }
 
+//private
 class RepoLi {
     constructor(tagArray, $li) {
         this.$li = $li
@@ -111,14 +102,6 @@ class RepoLi {
         this.$editHint = $li.prevAll(constants.selector.tag_edit.hint_id)
         this.$editButton = $li.prevAll(constants.selector.tag_edit.button_id)
         this.tagArray = tagArray
-    }
-
-    shown(){
-        util.removeHiddenClass(this.$li)
-    }
-
-    hidden(){
-        util.addHiddenClass(this.$li)
     }
 
     saveAfterEdit(){
@@ -135,6 +118,17 @@ class RepoLi {
         }
     }
 
+    //private
+    shown(){
+        util.removeHiddenClass(this.$li)
+    }
+
+    //private
+    hidden(){
+        util.addHiddenClass(this.$li)
+    }
+
+    //private
     judgeShowRepoLi(){
         let matchCount = 0
         let tagArray = this.tagArray
