@@ -39,7 +39,6 @@ export default class EditInput {
             const enteryKey = 13
             if (event.which == enteryKey){
                 let $this = jQuery(event.currentTarget)
-
                 func.saveEditTagsValue(jQuery($this))
             }
         })

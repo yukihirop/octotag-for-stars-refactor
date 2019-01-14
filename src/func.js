@@ -8,9 +8,6 @@ import { default as Storage } from "@/storage"
 import * as util from "@/util"
 import * as event from "@/event"
 
-var storage = new Storage()
-var tagData = {}
-
 export var updateTagsInFilterArea = (data) => {
     let filterAreaUl = new FilterAreaUl(data)
     filterAreaUl.loadCheckedList()
@@ -18,7 +15,9 @@ export var updateTagsInFilterArea = (data) => {
 }
 
 export var saveEditTagsValue = ($targetInput) => {
+    let storage = new Storage()
     let tagUl = new TagUl($targetInput)
+    var tagData = {}
     tagData = tagUl.tagData()
 
     tagUl.saveAfterEdit()
@@ -46,6 +45,7 @@ export var saveEditTagsValue = ($targetInput) => {
 }
 
 export var initialize = () => {
+    let storage = new Storage()
     let repoUl = new RepoUl({},[])
     let reponameArray = repoUl.getRepoNameList()
     let tagData = {}

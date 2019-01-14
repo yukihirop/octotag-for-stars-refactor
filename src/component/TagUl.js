@@ -13,8 +13,8 @@ export default class TagUl {
     }
 
     saveAfterEdit() {
-        let tag = this.tag()
-        let tagArray = tag.createTagArray()
+        let inputTag = this.inputTag()
+        let tagArray = inputTag.createTagArray()
 
         util.addHiddenClass(this.$targetInput)
         util.addHiddenClass(this.$editHint)
@@ -25,7 +25,7 @@ export default class TagUl {
 
     tagData(){
         let tagData = {}
-        let tagArray = this.tag().createTagArray()
+        let tagArray = this.inputTag().createTagArray()
         tagData[this.reponame] = tagArray
         return tagData
     }
@@ -41,14 +41,14 @@ export default class TagUl {
     }
 
     //private
-    tag(){
-        return new Tag(this.$targetInput)
+    inputTag(){
+        return new InputTag(this.$targetInput)
     }
 }
 
 
 //private
-class Tag {
+class InputTag {
     constructor($input){
         this.$input = $input
     }

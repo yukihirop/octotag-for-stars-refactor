@@ -19,7 +19,7 @@
              repoli_tag: "div.octotag-repo ul.octotag-taglist li",
          },
          repo_tag_class: "octotag-repo",
-         filter_id: ".octotag-filter",
+         filter_id: "octotag-filter",
          tag_edit: {
              hint_id: ".octotag-edit-hint",
              button_id: ".octotag-edit-button",

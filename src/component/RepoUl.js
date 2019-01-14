@@ -15,7 +15,7 @@ import { default as EditInput } from "@/component/shared/EditInput"
 export default class RepoUl {
     constructor(tagData, tagArray) {
         this.$repoUl = jQuery(constants.selector.github.repo_ul)
-        this.$repoAnchors = jQuery(constants.selector.github.repo_ul).find(constants.selector.github.reponame_anchor)
+        this.$repoAnchors = this.$repoUl.find(constants.selector.github.reponame_anchor)
         this.$repoList = this.$repoUl.children("li")
         this.tagData = tagData
         this.tagArray = tagArray

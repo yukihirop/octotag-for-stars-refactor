@@ -5,7 +5,7 @@ import * as util from "@/util"
 
 export default class EditButton {
     constructor(reponame) {
-        this.reponamename = reponame
+        this.reponame = reponame
         this.selector = jQuery(constants.event.edit_button)
     }
 
