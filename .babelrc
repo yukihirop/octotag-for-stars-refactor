@@ -20,5 +20,14 @@
         "@": "./src"
       }
     }]
-  ]
+  ],
+  // https://naoty.github.io/posts/25.html
+  "env": {
+    "test":{
+      "presets":[
+        ["@babel/env", { "modules": "commonjs" }]
+      ],
+      "plugins":["module:babel-jest-assertions"]
+    }
+  }
 }

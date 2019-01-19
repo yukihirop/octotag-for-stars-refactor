@@ -25,9 +25,8 @@ export default class FilterAreaLi {
 
     create(){
         let tagname = this.tagname
-        let $li = jQuery("<li>")
 
-        $li.append(jQuery("<input>", {
+        this.createSelector = jQuery("<li>").append(jQuery("<input>", {
             type: "checkbox",
             id: "octotag-filter-" +  tagname,
             value: tagname,
@@ -35,7 +34,6 @@ export default class FilterAreaLi {
             for: "octotag-filter-" + tagname,
             text: tagname,
         }))
-        this.createSelector = $li
         return this
     }
 

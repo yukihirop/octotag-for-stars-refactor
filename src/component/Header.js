@@ -1,7 +1,6 @@
 "use strict"
 
 import { constants } from "@/constants"
-import "font-awesome/css/font-awesome.css"
 
 export default class Header {
     constructor(){
