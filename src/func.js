@@ -21,70 +21,44 @@ export var saveEditTagsValue = ($targetInput) => {
     tagData = tagUl.tagData()
 
     tagUl.saveAfterEdit()
-
-    return new Promise((resolve) => {
-        storage.local.get(storage.storageKey, (result) => {
-            let tagDataFromStorage = {}
-            if (result[storage.storageKey] !== void 0) {
-                tagDataFromStorage = JSON.parse(result[storage.storageKey])
-            }
-            resolve(tagDataFromStorage)
-        })
-    }).then((tagDataFromStorage) => {
-        return new Promise((resolve) => {
-            Object.assign(tagDataFromStorage, tagData)
-            storage.local.set({ [storage.storageKey]: JSON.stringify(tagDataFromStorage) }, () => {
-                storage.local.get([storage.storageKey], (result) => {
-                    resolve(JSON.parse(result[storage.storageKey]))
-                })
-            })
-        })
-    }).then((data) => {
+    storage.saveEditTagsValue(tagData).then((data) => {
         updateTagsInFilterArea(data)
     })
 }
 
 export var initialize = () => {
-    let storage = new Storage()
     let repoUl = new RepoUl({},[])
     let reponameArray = repoUl.getRepoNameList()
-    let tagData = {}
-    reponameArray.forEach((reponame) => {
-        tagData[reponame] = []
-    })
 
-    // appendRepoTags
-    return new Promise((resolve) => {
-        storage.local.get(storage.storageKey, result => {
-            let tagData = createTagData(result, reponameArray)
-            let repoUl = new RepoUl(tagData,[])
-            repoUl.appendRepoTags()
-            resolve()
-        })
+    return new Promise(resolve => {
+        appendRepoTags(reponameArray, resolve)
     }).then(() => {
-        // appendTagFilter
-        return new Promise((resolve) => {
-            storage.local.get(storage.storageKey, result => {
-                let tagData = createTagData(result, reponameArray)
-                let tagSet = util.setTagSet(tagData)
-                let tagArray = Array.from(tagSet).sort()
-                let filterArea = new FilterArea()
-                filterArea.appendTagFilter(tagArray)
-                resolve()
-            })
+        return new Promise(resolve => {
+            appendTagFilter(reponameArray, resolve)
         })
     })
 }
 
-export var createTagData = (result, reponameArray) => {
-    let tagData = {}
-    if (result[storage.storageKey] !== void 0){
-        tagData = JSON.parse(result[storage.storageKey])
-    }
-    reponameArray.forEach((reponame) => {
-        if (!tagData[reponame]){
-            tagData[reponame] = []
-        }
+//private
+var appendRepoTags = (reponameArray, resolve) => {
+    let storage = new Storage()
+    
+    storage.get(reponameArray).then(tagData => {
+        let repoUl = new RepoUl(tagData,[])
+        repoUl.appendRepoTags()
+        resolve()
     })
-    return tagData
+}
+
+//private
+var appendTagFilter = (reponameArray, resolve) => {
+    let storage = new Storage()
+    
+    storage.get(reponameArray).then(tagData => {
+        let tagSet = util.setTagSet(tagData)
+        let tagArray = Array.from(tagSet).sort()
+        let filterArea = new FilterArea()
+        filterArea.appendTagFilter(tagArray)
+        resolve()
+    })
 }

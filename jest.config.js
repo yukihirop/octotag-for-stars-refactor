@@ -14,5 +14,6 @@ module.exports = {
     '!**/node_modules/**'
   ],
   coverageDirectory: '<rootDir>/test/unit/coverage',
-  transformIgnorePatterns: ['<rootDir>/node_modules/']
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  testURL: "http://localhost"
 }

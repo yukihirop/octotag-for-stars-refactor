@@ -3,6 +3,7 @@
 import { default as Header } from "@/component/Header"
 import * as func from "@/func"
 import * as event from "@/event"
+import jQuery from "jquery"
 
 jQuery(() => {
     const main = new Promise((resolve) => {
@@ -11,7 +12,7 @@ jQuery(() => {
 
         if (new RegExp("^/stars/?$").test(location.pathname)){
             header.loadStyleSheet()
-            Promise.all([func.initialize()]).then(() => { resolve("stars") })
+            func.initialize().then(() => { resolve("stars") })
         } else {
             resolve("github")
         }

@@ -9,7 +9,8 @@
     "build": "webpack --mode production --config webpack.config.js",
     "lint": "eslint --ext .js src",
     "watch": "webpack --watch",
-    "test": "jest"
+    "test": "jest",
+    "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
