@@ -1,6 +1,6 @@
 "use strict"
 
-import { default as Storage } from "@/Storage"
+import { default as Storage } from "@/storage"
 let mockChromeStorageLocal_get = jest.fn(() => { return Promise.resolve() })
 let mockChromeStorageLocal_set = jest.fn(() => { return Promise.resolve() })
 global.chrome = {
