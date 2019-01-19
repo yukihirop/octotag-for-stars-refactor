@@ -9,3 +9,28 @@ For practicing GitHub 's Chrome extension. The application itself is not origina
 It is a remake of the following github chrome extension using Babel (ES 6), Webpack, Jest
 
 [original][s1r-J/octotag-for-stars](https://github.com/s1r-J/octotag-for-stars)
+
+
+## Project Setup
+
+```
+yarn
+```
+
+## Build
+
+```
+npm run build
+```
+
+## Test
+
+```
+npm run test
+```
+
+## Coverage
+
+```
+npm run coveralls
+```
