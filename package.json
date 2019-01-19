@@ -10,7 +10,8 @@
     "lint": "eslint --ext .js src",
     "watch": "webpack --watch",
     "test": "jest",
-    "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
+    "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
+    "coveralls": "jest --coverage && cat ./test/unit/coverage/lcov.info | coveralls"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
